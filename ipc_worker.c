@@ -233,18 +233,18 @@ void sent_start_message_to_all(InitInfo * init_info)
     write_info_to_events_file(log_started_fmt, init_info, STARTED);
     printf(log_started_fmt, get_physical_time(), init_info->process_id, getpid(), getppid(), init_info->bank_account);
     Message msg = generate_message(STARTED, init_info, get_physical_time(), MESSAGE_MAGIC);
-    int return_status = send_multicast(init_info, &msg);
+    int return_status = send(init_info, 0, &msg);
     if (return_status != 0)
     {
         perror("Can not sent started message to all");
         exit(1);
     }
 
-    Message msg_received;
-    receive_any(init_info, &msg_received);
-    write_info_to_events_file(log_received_all_started_fmt, init_info, STARTED);
-    printf(log_received_all_started_fmt, get_physical_time(), init_info->process_id);
-    printf("Leave sent_start_message_to_all\n");
+//    Message msg_received;
+//    receive_any(init_info, &msg_received);
+//    write_info_to_events_file(log_received_all_started_fmt, init_info, STARTED);
+//    printf(log_received_all_started_fmt, get_physical_time(), init_info->process_id);
+//    printf("Leave sent_start_message_to_all\n");
 }
 
 /**

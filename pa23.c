@@ -58,7 +58,7 @@ void transfer(void * parent_data, local_id src, local_id dst, balance_t amount)
 
 void amount_transfer(int amount, timestamp_t time, BalanceHistory* balance_history)
 {
-    printf("Enter amount_transfer\n");
+//    printf("Enter amount_transfer\n");
     balance_t bank_account = balance_history->s_history[balance_history->s_history_len - 1].s_balance;
     for (timestamp_t t = balance_history->s_history_len; t <= time; t++) {
         BalanceState state = {bank_account, t, 0};
@@ -66,7 +66,7 @@ void amount_transfer(int amount, timestamp_t time, BalanceHistory* balance_histo
         balance_history->s_history_len++;
     }
     balance_history->s_history[time].s_balance += amount;
-    printf("Leave amount_transfer\n");
+//    printf("Leave amount_transfer\n");
 }
 
 /**
@@ -98,7 +98,7 @@ void create_child_processes(InitInfo* init_info, const balance_t* bank_accounts)
 
             Message msg_received;
             //Полезная работа
-//            while (done_process_counter != init_info->processes_count - 1)
+            while (done_process_counter != init_info->processes_count - 1)
             {
 //                printf("done %d processes\n", done_process_counter);
 //                printf("start receive %d\n", init_info->process_id);

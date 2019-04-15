@@ -18,7 +18,8 @@ int send(void * self, local_id dst, const Message * msg)
         perror("Can not write");
         return 1;
     }
-    printf("send by %d type %d\n", init_info->descriptors[init_info->process_id][dst]->write_fd, msg->s_header.s_type);
+//    printf("process %d send by %d type %d\n", init_info->process_id,
+//            init_info->descriptors[init_info->process_id][dst]->write_fd, msg->s_header.s_type);
     return 0;
 }
 
@@ -46,15 +47,13 @@ int receive(void * self, local_id from, Message * msg)
 
     InitInfo *init_info = (InitInfo*)self;
     local_id id = init_info->process_id;
-    printf("Enter process %d receive from %d by %d\n",init_info->process_id, from, init_info->descriptors[id][from]->read_fd);
+//    printf("Enter process %d receive from %d by %d\n",init_info->process_id, from,
+//            init_info->descriptors[id][from]->read_fd);
 
-    int return_status = (int)read(init_info->descriptors[id][from]->read_fd, &msg, sizeof(Message));
-    printf("read from %d\n", init_info->descriptors[id][from]->read_fd);
+    int return_status = (int)read(init_info->descriptors[id][from]->read_fd, msg, sizeof(Message));
 
-    if (msg->s_header.s_payload_len > 0)
-    {
-        printf("Enter process %d receive from %d - type: %d\n", id, from, msg->s_header.s_type);
-    }
+//    printf("RECEIVED by process %d from %d - type: %d, length: %d\n", id, from, msg->s_header.s_type,
+//            msg->s_header.s_payload_len);
 
     if (return_status < 0)
     {
@@ -67,7 +66,7 @@ int receive(void * self, local_id from, Message * msg)
 int receive_any(void * self, Message * msg) {
     InitInfo *init_info = (InitInfo*)self;
 
-    printf("Enter receive_any %d\n", init_info->process_id);
+//    printf("Enter receive_any %d\n", init_info->process_id);
     for (local_id i = 1; i < init_info->processes_count; ++i) {
         if (i != init_info->process_id) {                            ////not to receive message from itself
             int return_status = receive(init_info, i, msg);
@@ -77,6 +76,6 @@ int receive_any(void * self, Message * msg) {
             }
         }
     }
-    printf("Process %d Leave receive_any\n", init_info->process_id);
+//    printf("Process %d Leave receive_any\n", init_info->process_id);
     return 0;
 }
