@@ -1,6 +1,7 @@
 #include <unistd.h>           ////for write
 #include <stdio.h>            ////for printtf
 #include <string.h>           ////for malloc
+#include <fcntl.h>
 #include "ipc.h"
 #include "ipc_structs.h"
 
@@ -33,6 +34,7 @@ int send_multicast(void * self, const Message * msg)
             continue;
         }
         int return_status = send(init_info, i, msg);
+//        printf("send from %d, to %d type %d\n", init_info->process_id, i, msg->s_header.s_type);
         if (return_status < 0)
         {
             perror("Can not send multicast message\n");
@@ -47,19 +49,22 @@ int receive(void * self, local_id from, Message * msg)
 
     InitInfo *init_info = (InitInfo*)self;
     local_id id = init_info->process_id;
-//    printf("Enter process %d receive from %d by %d\n",init_info->process_id, from,
-//            init_info->descriptors[id][from]->read_fd);
 
-    int return_status = (int)read(init_info->descriptors[id][from]->read_fd, msg, sizeof(Message));
+    int fd = init_info->descriptors[id][from]->read_fd;
+    fcntl(fd, F_SETFL, fcntl(fd, F_GETFL, 0) | O_NONBLOCK);
 
-//    printf("RECEIVED by process %d from %d - type: %d, length: %d\n", id, from, msg->s_header.s_type,
-//            msg->s_header.s_payload_len);
+//    printf("Enter process %d receive from %d by %d\n",init_info->process_id, from, fd);
+
+    int return_status = (int)read(fd, msg, sizeof(Message));
 
     if (return_status < 0)
     {
-        printf("Can not read");
+//        printf("Can not read\n");
         return -1;
     }
+
+//    printf("RECEIVED by process %d from %d - type: %d, length: %d\n", id, from, msg->s_header.s_type,
+//            msg->s_header.s_payload_len);
     return 0;
 }
 
@@ -67,15 +72,16 @@ int receive_any(void * self, Message * msg) {
     InitInfo *init_info = (InitInfo*)self;
 
 //    printf("Enter receive_any %d\n", init_info->process_id);
-    for (local_id i = 1; i < init_info->processes_count; ++i) {
-        if (i != init_info->process_id) {                            ////not to receive message from itself
-            int return_status = receive(init_info, i, msg);
-            if (return_status < 0) {
-//                printf("Leave <0 receive_any\n");
-                return 1;
+    while (1)
+    {
+        for (local_id i = 0; i < init_info->processes_count; ++i) {
+            if (i != init_info->process_id) {                            ////not to receive message from itself
+                int return_status = receive(init_info, i, msg);
+                if (return_status == 0) {
+//                Мы получили сообщение, возвращаемся
+                    return 0;
+                }
             }
         }
     }
-//    printf("Process %d Leave receive_any\n", init_info->process_id);
-    return 0;
 }
