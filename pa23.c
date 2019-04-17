@@ -37,7 +37,7 @@ void transfer(void * parent_data, local_id src, local_id dst, balance_t amount)
     while (1)
     {
 //        printf("type %d\n", ack.s_header.s_type);
-        receive(parent_data, dst, &msg);
+        receive_any(parent_data, &msg);
         if (msg.s_header.s_type == ACK){
             goto leave_transfer;
         }

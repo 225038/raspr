@@ -34,7 +34,7 @@ int send_multicast(void * self, const Message * msg)
             continue;
         }
         int return_status = send(init_info, i, msg);
-//        printf("send from %d, to %d type %d\n", init_info->process_id, i, msg->s_header.s_type);
+//        printf("send from %d, to %d type %d\n", init_info->process_id, i, msg->s_header->);
         if (return_status < 0)
         {
             perror("Can not send multicast message\n");

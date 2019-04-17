@@ -46,34 +46,26 @@ void send_done_message_to_all(InitInfo *init_info)
 void send_history_message_to_parent(InitInfo *init_info, BalanceHistory balance_history)
 {
     Message historyMsg = generate_history_message(balance_history, get_physical_time(), MESSAGE_MAGIC);
+//    printf("hist %d balance = %d\n", balance_history.s_id, balance_history.s_history[1].s_balance);
+//    send(init_info, 0, &historyMsg);
     send_multicast(init_info, &historyMsg);
     Message msgs[init_info->processes_count - 1];
     receive_from_every_child(init_info, msgs, BALANCE_HISTORY);
 }
 
-//void send_to_every_child(InitInfo *init_info, Message* msg)
-//{
-//    for (local_id i = 1; i < init_info->processes_count; i++)
-//    {
-//        if (i != init_info->process_id) {
-//            send(init_info, i, msg);
-//        }
-//    }
-//}
-
 int receive_from_every_child(void *self, Message *msgs, MessageType type)
 {
     InitInfo *init_info = (InitInfo*)self;
-    Message msg;
 //    printf("Enter receive_every %d for %d\n", type, init_info->process_id);
     for (local_id i = 1; i < init_info->processes_count; i++)
     {
         if (i != init_info->process_id) {
+//            printf("%d from %d receive type %d\n", init_info->process_id, i, type);
             do
             {
-                receive(init_info, i, &msg);
-                msgs[(i-1)] = msg;
-//                printf("%d from %d receive type %d\n", init_info->process_id, i, msgs[(i-1)].s_header.s_type);
+                int fd = init_info->descriptors[init_info->process_id][i]->read_fd;
+                fcntl(fd, F_SETFL, fcntl(fd, F_GETFL, 0));
+                read(fd, &msgs[(i-1)], sizeof(Message));
             } while (msgs[(i-1)].s_header.s_type != type);
 
         }

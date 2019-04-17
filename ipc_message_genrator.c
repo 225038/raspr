@@ -58,12 +58,11 @@ Message generate_transfer_message(TransferOrder order, timestamp_t time, uint16_
     return msg;
 }
 
-Message generate_history_message(BalanceHistory history, timestamp_t time, uint16_t magic_number)
+Message generate_history_message(BalanceHistory balance_history, timestamp_t time, uint16_t magic_number)
 {
-//    printf("Enter generate %d, %d, %d\n", order.s_src, order.s_dst, order.s_amount);
     Message msg;
-    int length = sizeof(history);
-    memcpy(msg.s_payload, &history, length);
+    int length = sizeof(balance_history);
+    memcpy(msg.s_payload, &balance_history, length);
     msg.s_header = generate_message_header(magic_number, length, BALANCE_HISTORY, time);
 //    printf("Leave generate\n");
     return msg;
