@@ -33,6 +33,7 @@ void transfer(void * parent_data, local_id src, local_id dst, balance_t amount)
     send(parent_data, src, &msg);
     write_transfer_info_to_events_file(log_transfer_out_fmt, &order, TRANSFER);
     printf(log_transfer_out_fmt, get_physical_time(), src, amount, dst);
+    fflush(stdout);
 
     while (1)
     {
@@ -45,6 +46,7 @@ void transfer(void * parent_data, local_id src, local_id dst, balance_t amount)
     leave_transfer:
     write_transfer_info_to_events_file(log_transfer_in_fmt, &order, DONE);
     printf(log_transfer_in_fmt, get_physical_time(), dst, amount, src);
+    fflush(stdout);
 //    printf("Leave transfer\n");
 }
 

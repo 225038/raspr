@@ -11,9 +11,8 @@ int send(void * self, local_id dst, const Message * msg)
 {
     InitInfo *init_info = (InitInfo*)self;
 
-
-    int return_status = (int) write(init_info->descriptors[init_info->process_id][dst]->write_fd, msg,
-            sizeof msg->s_header + msg->s_header.s_payload_len);
+    int fd = init_info->descriptors[init_info->process_id][dst]->write_fd;
+    int return_status = (int) write(fd, msg, sizeof msg->s_header + msg->s_header.s_payload_len);
     if (return_status < 0)
     {
         perror("Can not write");

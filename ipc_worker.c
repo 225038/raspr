@@ -1,8 +1,11 @@
-#include <stdlib.h>         ////for atoi
-#include <stdio.h>          ////for printf
-#include <unistd.h>
+#include <stdio.h>              ////for printf
+#include <stdlib.h>             ////for malloc
+#include <unistd.h>             ////for pipe
+#include <fcntl.h>              ////for work with file
+#include <string.h>             ////for memset
+#include <time.h>
+#include <sys/types.h>
 #include <sys/wait.h>
-#include <string.h>         ////for memset
 
 #include "ipc_worker.h"
 
@@ -82,7 +85,9 @@ void create_child_processes(InitInfo* init_info, const balance_t* bank_accounts)
                         //Без этого у процессов, не участвовавших в последней транзакции - 0 в истории
                         amount_transfer(0, get_physical_time(), &balance_history, init_info);
                         send_history_message_to_parent(init_info, balance_history);
-                        send_done_message_to_all(init_info);
+                        receive_any(init_info, &msg_received);
+                        send_done_message_to_parent(init_info);
+                        receive_any(init_info, &msg_received);
                         goto leave_child_process;
                     }
                 }
@@ -135,6 +140,7 @@ void main_process_get_message(InitInfo* init_info)
     receive_from_every_child(init_info, msgs, STARTED);
     write_info_to_events_file(log_received_all_started_fmt, init_info, STARTED);
     printf(log_received_all_started_fmt, get_physical_time(), init_info->process_id);
+    fflush(stdout);
 
     //Переводы: processes_count - 1 - т.к. там количество всех процессов, включая родительский 0,
     //а нам нужны только дочерние
@@ -145,12 +151,15 @@ void main_process_get_message(InitInfo* init_info)
 
     Message history_messages[init_info->processes_count - 1];
     receive_from_every_child(init_info, history_messages, BALANCE_HISTORY);
+    send_multicast(init_info, &msg_stop);
+
 //    for (int i = 0; i < init_info->processes_count - 1; ++i)
 //    {
 //        printf("received %d from %d\n", history_messages[i].s_header.s_type, i + 1);
 //    }
 
     receive_from_every_child(init_info, msgs, DONE);
+    send_multicast(init_info, &msg_stop);
 //    printf("received\n");
 
 
@@ -158,6 +167,7 @@ void main_process_get_message(InitInfo* init_info)
 
     write_info_to_events_file(log_received_all_done_fmt, init_info, DONE);
     printf(log_received_all_done_fmt, get_physical_time(), init_info->process_id);
+    fflush(stdout);
 
     print_transactions_history(init_info, history_messages);
     close_its_pipes(init_info);
