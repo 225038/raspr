@@ -1,0 +1,4 @@
+/home/liza/Downloads/clion-2018.3.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/liza/workspace/study/raspr/pa4
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/liza/workspace/study/raspr/pa4/cmake-build-debug

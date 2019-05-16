@@ -1,0 +1,14 @@
+0: process 3 (pid 20000, parent 19997) has STARTED with balance $30
+0: process 2 (pid 19999, parent 19997) has STARTED with balance $20
+0: process 1 (pid 19998, parent 19997) has STARTED with balance $10
+3: process 0 received all STARTED messages
+3: process 1 transferred $ 1 to process 2
+7: process 2 received $ 1 from process 1
+7: process 2 transferred $ 2 to process 3
+11: process 3 received $ 2 from process 2
+11: process 3 transferred $ 1 to process 1
+15: process 1 received $ 1 from process 3
+17: process 1 has DONE with balance $10
+17: process 2 has DONE with balance $19
+17: process 3 has DONE with balance $31
+22: process 0 received all DONE messages
