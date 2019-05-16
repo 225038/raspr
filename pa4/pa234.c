@@ -50,6 +50,7 @@ int compare(const void * a, const void * b)
 {
     return ( *(int*)a - *(int*)b );
 }
+
 int who_is_next(const InitInfo *init_info)
 {
     int check = 0;
@@ -94,11 +95,9 @@ int request_cs(const void * self)
                 break;
             case CS_REPLY:
                 replies++;
-                if (replies == init_info->processes_count - 1)                      ////если все ответили, можем уходить
-                {
+                if (replies == init_info->processes_count - 1 && who_is_next(init_info) == 0)        ////если все ответили и мы след.
+                                                                                                    //// можем уходить
                     return 0;
-                }
-                break;
         }
     }
 }
