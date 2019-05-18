@@ -39,10 +39,12 @@ void create_child_processes(InitInfo* init_info)
                 char strings[MAX_MESSAGE_LEN];
                 sprintf(strings, log_loop_operation_fmt, i, j, iters);
                 if (mutexl) {
-                    request_cs(init_info);
-                    print(strings);
+//                    printf("%d\n", init_info->process_id);
                     fflush(stdout);
-//                    printf("%s\n", strings);
+                    request_cs(init_info);
+//                    print(strings);
+                    printf("%s\n", strings);
+                    fflush(stdout);
                     release_cs(init_info);
                 } else {
                     print(strings);

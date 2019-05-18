@@ -1,7 +1,7 @@
-0: process 2 (pid 25686, parent 25684) has STARTED with balance $ 0
-0: process 1 (pid 25685, parent 25684) has STARTED with balance $ 0
-0: process 3 (pid 25687, parent 25684) has STARTED with balance $ 0
+0: process 1 (pid 30600, parent 30599) has STARTED with balance $ 0
+0: process 2 (pid 30601, parent 30599) has STARTED with balance $ 0
+0: process 3 (pid 30602, parent 30599) has STARTED with balance $ 0
 3: process 0 received all STARTED messages
-56: process 1 has DONE with balance $ 0
-83: process 3 has DONE with balance $ 0
-106: process 2 has DONE with balance $ 0
+42: process 3 has DONE with balance $ 0
+80: process 2 has DONE with balance $ 0
+111: process 1 has DONE with balance $ 0
