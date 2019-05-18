@@ -40,6 +40,7 @@ void create_child_processes(InitInfo* init_info)
                 if (mutexl) {
                     request_cs(init_info);
                     print(strings);
+                    fflush(stdout);
 //                    printf("%s\n", strings);
                     release_cs(init_info);
                 } else {
@@ -47,7 +48,9 @@ void create_child_processes(InitInfo* init_info)
 //                    printf("%s\n", loopStr);
                 }
             }
+
             Message msg;
+
             send_done_message_to_all(init_info);
             receive_from_every_child(init_info, &msg, DONE);
 

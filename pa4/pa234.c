@@ -62,7 +62,7 @@ int who_is_next(const InitInfo *init_info)
         {
 //            printf("process %d with %d "
 //                   "VS process %d with %d\n", init_info->process_id, queue[init_info->process_id], i, queue[i]);
-            fflush(stdout);
+//            fflush(stdout);
             if (queue[init_info->process_id] > queue[i]){
 //                printf("if) process %d goes to the cs\n", i);
 //                fflush(stdout);
@@ -77,7 +77,7 @@ int who_is_next(const InitInfo *init_info)
         }
     }
 //    printf("process %d goes to the cs\n", init_info->process_id);
-    fflush(stdout);
+//    fflush(stdout);
     return 0;
 }
 
@@ -93,10 +93,10 @@ int request_cs(const void * self)
 //    fflush(stdout);
     send_multicast(init_info, &msg);            ////отправили всем, что хотим в КС
 
-//    if (who_is_next(init_info) == 0)
-//    {
-//        return 0;
-//    }
+    if (who_is_next(init_info) == 0)
+    {
+        return 0;
+    }
     int replies = 0;
     while(1)
     {
@@ -105,7 +105,7 @@ int request_cs(const void * self)
 //        fflush(stdout);
         int sender_process_id = receive_any(init_info, &msg);
 //        printf("proc %d recieve type %d\n", init_info->process_id, msg.s_header.s_type);
-        fflush(stdout);
+//        fflush(stdout);
         switch (msg.s_header.s_type)
         {
 //            case CS_RELEASE:                                                ////кто-то вышел, убираем его из очереди
@@ -114,7 +114,7 @@ int request_cs(const void * self)
             case CS_REQUEST:                                                ////кто-то хочет в очередь, добавим его
                 time++;
 //                printf("req %d with %d\n", init_info->process_id, get_lamport_time());
-                fflush(stdout);
+//                fflush(stdout);
                 queue[sender_process_id] = msg.s_header.s_local_time;
                 Message msg_reply = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_REPLY);
                 send(init_info, (local_id)sender_process_id, &msg_reply);
@@ -122,10 +122,10 @@ int request_cs(const void * self)
             case CS_REPLY:
                 replies++;
 //                printf("replies %d for %d\n", replies, init_info->process_id);
-                fflush(stdout);
+//                fflush(stdout);
                 while (1) {
 //                    printf("wait %d with %d\n", init_info->process_id, get_lamport_time());
-                    fflush(stdout);
+//                    fflush(stdout);
                     if (replies == init_info->processes_count - 2 && who_is_next(init_info) == 0) {        ////если все ответили и мы след.
                         //// можем уходить
                         return 0;
@@ -136,6 +136,8 @@ int request_cs(const void * self)
 //                        printf("Hey %d\n", queue[sender_process_id]);
                     }
                 }
+            case DONE:
+
             default:
                 break;
         }
