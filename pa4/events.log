@@ -1,4 +1,4 @@
-0: process 2 (pid  9555, parent  9553) has STARTED with balance $ 0
-0: process 1 (pid  9554, parent  9553) has STARTED with balance $ 0
-2: process 0 received all STARTED messages
-5: process 1 has DONE with balance $ 0
+0: process 2 (pid 10738, parent 10736) has STARTED with balance $ 0
+0: process 1 (pid 10737, parent 10736) has STARTED with balance $ 0
+0: process 3 (pid 10739, parent 10736) has STARTED with balance $ 0
+3: process 0 received all STARTED messages

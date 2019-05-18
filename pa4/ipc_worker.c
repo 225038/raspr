@@ -40,7 +40,7 @@ void create_child_processes(InitInfo* init_info)
                 if (mutexl) {
                     request_cs(init_info);
                     print(strings);
-                    printf("%s\n", strings);
+//                    printf("%s\n", strings);
                     release_cs(init_info);
                 } else {
                     print(strings);
