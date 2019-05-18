@@ -99,9 +99,14 @@ int request_cs(const void * self)
         Message msg;
 //        printf("I AM HERE %d\n", init_info->process_id);
 //        fflush(stdout);
+        if (replies == init_info->processes_count - 2 && who_is_next(init_info) == 0) {        ////если все ответили и мы след.
+            //// можем уходить
+            return 0;
+        }
         int sender_process_id = receive_any(init_info, &msg);
 //        printf("proc %d recieve type %d\n", init_info->process_id, msg.s_header.s_type);
 //        fflush(stdout);
+
         switch (msg.s_header.s_type)
         {
             case CS_RELEASE:                                                ////кто-то вышел, убираем его из очереди
@@ -119,13 +124,14 @@ int request_cs(const void * self)
                 replies++;
                 printf("replies %d for %d\n", replies, init_info->process_id);
                 fflush(stdout);
+                break;
 //                while (1) {
 //                    printf("wait %d with %d\n", init_info->process_id, get_lamport_time());
 //                    fflush(stdout);
-                    if (replies == init_info->processes_count - 2 && who_is_next(init_info) == 0) {        ////если все ответили и мы след.
-                        //// можем уходить
-                        return 0;
-                    }
+//                    if (replies == init_info->processes_count - 2 && who_is_next(init_info) == 0) {        ////если все ответили и мы след.
+//                        //// можем уходить
+//                        return 0;
+//                    }
 //                    receive_any(init_info, &msg);
 //                    if (msg.s_header.s_type == CS_RELEASE) {
 //                        queue[sender_process_id] = -1;
