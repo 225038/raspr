@@ -25,6 +25,7 @@ void send_start_message_to_all(InitInfo *init_info)
         perror("Can not sent started message to all");
         exit(1);
     }
+
 }
 
 /**
@@ -45,7 +46,6 @@ void send_done_message_to_all(InitInfo *init_info)
     }
 //    receive_from_every_child(init_info, &msg, DONE);
 }
-
 
 int receive_from_every_child(void *self, Message *msgs, MessageType type)
 {

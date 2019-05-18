@@ -20,7 +20,7 @@ timestamp_t get_lamport_time() {
 void create_child_processes(InitInfo* init_info)
 {
 //    printf("Enter create_child_processes\n");
-//    BalanceHistory balance_history;
+//    fflush(stdout);
     pid_t* output = (pid_t*)malloc(sizeof(pid_t) * init_info->processes_count);
     output[0] = getpid();                                           //add id of main process
     for (local_id i = 1; i < init_info->processes_count; ++i)
@@ -28,14 +28,11 @@ void create_child_processes(InitInfo* init_info)
         output[i] = fork();
         if (output[i] == 0)
         {
-            // code for child
             init_info->process_id = i;
             close_some_pipes(init_info);
-            printf("process sended id = %d\n", init_info->process_id);
             send_start_message_to_all(init_info);
 
             //Полезная работа
-
             int iters = i * 5;
             for (int j = 1; j <= iters; j++) {
                 char strings[MAX_MESSAGE_LEN];
@@ -52,7 +49,7 @@ void create_child_processes(InitInfo* init_info)
             }
             Message msg;
             send_done_message_to_all(init_info);
-            receive_any(init_info, &msg);
+            receive_from_every_child(init_info, &msg, DONE);
 
             // closing this process's pipes in other processes
             close_its_pipes(init_info);
@@ -66,6 +63,7 @@ void create_child_processes(InitInfo* init_info)
     }
     free(output);
 //    printf("Leave create_child_processes\n");
+//    fflush(stdout);
 }
 
 /**
@@ -83,12 +81,8 @@ void main_process_get_message(InitInfo* init_info)
     write_info_to_events_file(log_received_all_started_fmt, init_info, STARTED);
     printf(log_received_all_started_fmt, get_lamport_time(), init_info->process_id);
     fflush(stdout);
-    //Переводы: processes_count - 1 - т.к. там количество всех процессов, включая родительский 0,
-    //а нам нужны только дочерние
-
     receive_from_every_child(init_info, msgs, DONE);
 //    printf("received\n");
-
 
     while(wait(NULL) > 0) {}                        ////wait for all child processes finish
 

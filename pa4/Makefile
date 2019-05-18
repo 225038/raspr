@@ -5,7 +5,7 @@ LFLAGS=-L. -lruntime
 all: export build
 
 export:
-    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/workspace/study/raspr/";
+    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/aleksandra/Документы/распределенки/4/raspr/pa4/libruntime.so";
 
     LD_PRELOAD=/home/workspace/study/raspr/libruntime.so ./a.out –p 2 10 20;
 

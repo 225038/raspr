@@ -1,7 +1,6 @@
 #include <getopt.h>         ////for getopt
 #include <stdlib.h>         ////for atoi
 #include <stdio.h>          ////for printf
-//#include <jmorecfg.h>
 
 #include "ipc_worker.h"
 
@@ -59,7 +58,7 @@ int who_is_next(const InitInfo *init_info)
     {
         if (i != init_info->process_id || queue[i] != -1)
         {
-            printf("process %d goes to the cs qwerty\n", i);
+            printf("process %d goes to the cs\n", i);
             return i;
         }
     }
@@ -72,8 +71,8 @@ int request_cs(const void * self)
     InitInfo *init_info = (InitInfo*)self;
     Message msg = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_REQUEST);
     queue[init_info->process_id] = msg.s_header.s_local_time;
-    printf("request sent from %d with time %d\n", init_info->process_id, msg.s_header.s_local_time);
-    fflush(stdout);
+//    printf("%d\n", init_info->process_id);
+//    fflush(stdout);
     send_multicast(init_info, &msg);            ////отправили всем, что хотим в КС
 
     if (who_is_next(init_info) == 0)
@@ -90,7 +89,7 @@ int request_cs(const void * self)
             case CS_RELEASE:                                                ////кто-то вышел, убираем его из очереди
                 queue[sender_process_id] = -1;
                 break;
-            case CS_REQUEST:                                                //// кто-то хочет в очередь, добавим его
+            case CS_REQUEST:                                                ////кто-то хочет в очередь, добавим его
                 queue[sender_process_id] = msg.s_header.s_local_time;
                 Message msg_reply = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_REPLY);
                 send(init_info, (local_id)sender_process_id, &msg_reply);
@@ -117,7 +116,6 @@ int main(int argc, char *argv[]) {
 
     const struct option options = {"mutexl", 0, &mutexl, 1};
     getopt_long(argc, argv, "", &options, NULL);
-
     open_log_files();
     InitInfo *initInfo = (InitInfo*)malloc(sizeof(InitInfo));
     initInfo->processes_count = processes_count;
