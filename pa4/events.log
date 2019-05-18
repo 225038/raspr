@@ -1,11 +1,11 @@
-0: process 3 (pid 18056, parent 18053) has STARTED with balance $ 0
-0: process 2 (pid 18055, parent 18053) has STARTED with balance $ 0
-0: process 5 (pid 18058, parent 18053) has STARTED with balance $ 0
-0: process 4 (pid 18057, parent 18053) has STARTED with balance $ 0
-0: process 1 (pid 18054, parent 18053) has STARTED with balance $ 0
-5: process 0 received all STARTED messages
-128: process 1 has DONE with balance $ 0
-252: process 2 has DONE with balance $ 0
-346: process 3 has DONE with balance $ 0
-413: process 4 has DONE with balance $ 0
-457: process 5 has DONE with balance $ 0
+0: process 3 (pid 13847, parent 13844) has STARTED with balance $ 0
+0: process 2 (pid 13846, parent 13844) has STARTED with balance $ 0
+0: process 1 (pid 13845, parent 13844) has STARTED with balance $ 0
+3: process 0 received all STARTED messages
+56: process 1 has DONE with balance $ 0
+109: process 2 has DONE with balance $ 0
+141: process 3 has DONE with balance $ 0
+143: process 1 has DONE with balance $ 0
+144: process 2 has DONE with balance $ 0
+145: process 3 has DONE with balance $ 0
+143: process 0 received all DONE messages

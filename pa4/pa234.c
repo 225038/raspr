@@ -97,15 +97,15 @@ int request_cs(const void * self)
     while(1)
     {
         Message msg;
-        printf("I AM HERE %d with replies %d\n", init_info->process_id, replies);
-        fflush(stdout);
+//        printf("I AM HERE %d with replies %d\n", init_info->process_id, replies);
+//        fflush(stdout);
         if (replies == init_info->processes_count - 2 && who_is_next(init_info) == 0) {        ////если все ответили и мы след.
             //// можем уходить
             return 0;
         }
         int sender_process_id = receive_any(init_info, &msg);
-        printf("proc %d recieve type %d\n", init_info->process_id, msg.s_header.s_type);
-        fflush(stdout);
+//        printf("proc %d recieve type %d\n", init_info->process_id, msg.s_header.s_type);
+//        fflush(stdout);
 
         switch (msg.s_header.s_type)
         {
@@ -121,7 +121,7 @@ int request_cs(const void * self)
             case CS_REQUEST:                                                ////кто-то хочет в очередь, добавим его
                 time++;
 //                printf("req for %d with %d\n", init_info->process_id, msg.s_header.s_local_time);
-                fflush(stdout);
+//                fflush(stdout);
                 queue[sender_process_id] = msg.s_header.s_local_time;
                 Message msg_reply = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_REPLY);
                 send(init_info, (local_id)sender_process_id, &msg_reply);

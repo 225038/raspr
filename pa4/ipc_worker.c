@@ -41,14 +41,14 @@ void create_child_processes(InitInfo* init_info)
                 if (mutexl) {
 //                    printf("%d\n", init_info->process_id);
 //                    fflush(stdout);
-                    printf("REQUEST %d\n", init_info->process_id);
-                    fflush(stdout);
+//                    printf("REQUEST %d\n", init_info->process_id);
+//                    fflush(stdout);
                     request_cs(init_info);
-//                    print(strings);
-                    printf("%s\n", strings);
-                    fflush(stdout);
-                    printf("REALISED %d\n", init_info->process_id);
-                    fflush(stdout);
+                    print(strings);
+//                    printf("%s\n", strings);
+//                    fflush(stdout);
+//                    printf("REALISED %d\n", init_info->process_id);
+//                    fflush(stdout);
                     release_cs(init_info);
                 } else {
                     print(strings);
@@ -65,6 +65,7 @@ void create_child_processes(InitInfo* init_info)
                 if (msg.s_header.s_type == DONE) {
                     proc++;
                     if (proc == init_info->processes_count - 1) {
+                        send_done_message_to_all(init_info);
                         break;
                     }
                 } else if (msg.s_header.s_type == CS_REQUEST) {
