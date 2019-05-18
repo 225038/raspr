@@ -46,10 +46,6 @@ void transfer(void * parent_data, local_id src, local_id dst, balance_t amount)
 //    printf("Leave transfer\n");
 }
 
-int compare(const void * a, const void * b)
-{
-    return ( *(int*)a - *(int*)b );
-}
 int who_is_next(const InitInfo *init_info)
 {
 //    printf("Who is next for %d\n", init_info->process_id);
@@ -58,7 +54,7 @@ int who_is_next(const InitInfo *init_info)
 //    qsort(queue, MAX_PROCESS_ID, sizeof(timestamp_t), compare);
     for (int i = 1; i < init_info->processes_count; ++i)
     {
-        if (i != init_info->process_id && queue[i] > 0)
+        if (i != init_info->process_id && queue[i] >= 0)
         {
 //            printf("process %d with %d "
 //                   "VS process %d with %d\n", init_info->process_id, queue[init_info->process_id], i, queue[i]);
@@ -68,7 +64,7 @@ int who_is_next(const InitInfo *init_info)
 //                fflush(stdout);
                 return i;
             }
-            if (queue[i] == queue[init_info->process_id] && i<init_info->process_id)
+            if (queue[i] == queue[init_info->process_id] && i < init_info->process_id)
             {
 //                printf("if2) process %d goes to the cs\n", i);
 //                fflush(stdout);
@@ -108,9 +104,9 @@ int request_cs(const void * self)
 //        fflush(stdout);
         switch (msg.s_header.s_type)
         {
-//            case CS_RELEASE:                                                ////кто-то вышел, убираем его из очереди
-//                queue[sender_process_id] = -1;
-//                break;
+            case CS_RELEASE:                                                ////кто-то вышел, убираем его из очереди
+                queue[sender_process_id] = -1;
+                break;
             case CS_REQUEST:                                                ////кто-то хочет в очередь, добавим его
                 time++;
 //                printf("req %d with %d\n", init_info->process_id, get_lamport_time());
@@ -121,23 +117,20 @@ int request_cs(const void * self)
                 break;
             case CS_REPLY:
                 replies++;
-//                printf("replies %d for %d\n", replies, init_info->process_id);
-//                fflush(stdout);
-                while (1) {
+                printf("replies %d for %d\n", replies, init_info->process_id);
+                fflush(stdout);
+//                while (1) {
 //                    printf("wait %d with %d\n", init_info->process_id, get_lamport_time());
 //                    fflush(stdout);
                     if (replies == init_info->processes_count - 2 && who_is_next(init_info) == 0) {        ////если все ответили и мы след.
                         //// можем уходить
                         return 0;
                     }
-                    receive_any(init_info, &msg);
-                    if (msg.s_header.s_type == CS_RELEASE) {
-                        queue[sender_process_id] = -1;
+//                    receive_any(init_info, &msg);
+//                    if (msg.s_header.s_type == CS_RELEASE) {
+//                        queue[sender_process_id] = -1;
 //                        printf("Hey %d\n", queue[sender_process_id]);
-                    }
-                }
-            case DONE:
-
+//                    }
             default:
                 break;
         }

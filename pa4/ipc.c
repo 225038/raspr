@@ -80,7 +80,7 @@ int receive_any(void * self, Message * msg) {
 
     InitInfo *init_info = (InitInfo*)self;
 
-//    printf("Enter receive_any %d\n", init_info->process_id);
+    printf("Enter receive_any %d\n", init_info->process_id);
     fflush(stdout);
     while (1)
     {
@@ -93,7 +93,7 @@ int receive_any(void * self, Message * msg) {
 //                        time++;
 //                    }
 //                Мы получили сообщение, возвращаемся
-//                    printf("Leave receive_any %d with %d\n", init_info->process_id, msg->s_header.s_type);
+                    printf("Leave receive_any %d with %d\n", init_info->process_id, msg->s_header.s_type);
                     fflush(stdout);
                     return i;                                           ////возвращаем индекс, потому что нам надо номер процесса
                 }
