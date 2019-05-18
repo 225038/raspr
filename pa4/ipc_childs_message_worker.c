@@ -25,7 +25,6 @@ void send_start_message_to_all(InitInfo *init_info)
         perror("Can not sent started message to all");
         exit(1);
     }
-
 }
 
 /**
@@ -47,14 +46,6 @@ void send_done_message_to_all(InitInfo *init_info)
 //    receive_from_every_child(init_info, &msg, DONE);
 }
 
-void send_history_message_to_parent(InitInfo *init_info, BalanceHistory balance_history)
-{
-    Message historyMsg = generate_history_message(balance_history, get_lamport_time(), MESSAGE_MAGIC);
-//    printf("hist %d balance = %d\n", balance_history.s_id, balance_history.s_history[1].s_balance);
-    send(init_info, 0,  &historyMsg);
-//    Message msgs[init_info->processes_count - 1];
-//    receive_from_every_child(init_info, msgs, BALANCE_HISTORY);
-}
 
 int receive_from_every_child(void *self, Message *msgs, MessageType type)
 {

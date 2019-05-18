@@ -13,25 +13,6 @@ timestamp_t get_lamport_time() {
     return time;
 }
 
-void amount_transfer(int amount, timestamp_t t_time, BalanceHistory *balance_history, InitInfo *init_info)
-{
-    balance_t bank_account = balance_history->s_history[balance_history->s_history_len - 1].s_balance;
-    //Заполняем balance_states, во время которых обменивались другие процессы, нашим старым значением счета
-    for (int i = balance_history->s_history_len; i <= t_time; i++) {
-        BalanceState balance_state = {bank_account, i, 0};
-        balance_history->s_history[i] = balance_state;
-        balance_history->s_history_len++;
-    }
-    //Теперь для последнего balance_state увеличиваем/уменьшаем значение на указанную нам сумму
-    balance_history->s_history[t_time].s_balance += amount;
-    init_info->bank_account += amount;
-    if (amount > 0) {
-        balance_history->s_history[t_time - 1].s_balance_pending_in = (balance_t) amount;       //когда отправили
-        balance_history->s_history[t_time - 2].s_balance_pending_in = (balance_t) amount;       //когда получили transfer
-    }
-//    printf("Leave\n");
-}
-
 /**
  * Create needed count of processes. Child processes do their job RETURN??
  * @param init_info
@@ -47,18 +28,12 @@ void create_child_processes(InitInfo* init_info)
         output[i] = fork();
         if (output[i] == 0)
         {
-//            printf("Enter create_child_processes\n");
             // code for child
             init_info->process_id = i;
-//            init_info->bank_account = bank_accounts[i];
-//            balance_history.s_id = init_info->process_id;
-//            balance_history.s_history_len = 1;
-            //Начальное состояние счета
-//            balance_history.s_history[0] = (BalanceState){init_info->bank_account, get_lamport_time(), 0};
             close_some_pipes(init_info);
+            printf("process sended id = %d\n", init_info->process_id);
             send_start_message_to_all(init_info);
 
-//            Message msg_received;
             //Полезная работа
 
             int iters = i * 5;
@@ -66,10 +41,10 @@ void create_child_processes(InitInfo* init_info)
                 char strings[MAX_MESSAGE_LEN];
                 sprintf(strings, log_loop_operation_fmt, i, j, iters);
                 if (mutexl) {
-                    request_cs(&init_info);
+                    request_cs(init_info);
                     print(strings);
                     printf("%s\n", strings);
-//                    release_cs(&sio);
+                    release_cs(init_info);
                 } else {
                     print(strings);
 //                    printf("%s\n", loopStr);
@@ -93,26 +68,6 @@ void create_child_processes(InitInfo* init_info)
 //    printf("Leave create_child_processes\n");
 }
 
-void print_transactions_history(InitInfo* initInfo, Message* msgs)
-{
-//    printf("history msgs received\n");
-
-    AllHistory all_history;
-    all_history.s_history_len = initInfo->processes_count - 1;
-    for (int i = 1; i < initInfo->processes_count; i++) {
-
-        memcpy(&all_history.s_history[(i-1)], &msgs[(i-1)].s_payload, msgs[(i-1)].s_header.s_payload_len);
-//        for (int j = 0; j < initInfo->processes_count; j++)
-//        {
-//            printf("for account %d - balance %d = %d\n", all_history.s_history[i-1].s_id, j,
-//                   all_history.s_history[i-1].s_history[j].s_balance);
-//        }
-    }
-//    printf("history msgs will print\n");
-    print_history(&all_history);
-    fflush(stdout);
-}
-
 /**
  * Main process watch for his children
  * @param init_info
@@ -130,21 +85,8 @@ void main_process_get_message(InitInfo* init_info)
     fflush(stdout);
     //Переводы: processes_count - 1 - т.к. там количество всех процессов, включая родительский 0,
     //а нам нужны только дочерние
-    bank_robbery(init_info, init_info->processes_count - 1);
-
-    Message msg_stop = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, STOP);
-    send_multicast(init_info, &msg_stop);
-
-    Message history_messages[init_info->processes_count - 1];
-    receive_from_every_child(init_info, history_messages, BALANCE_HISTORY);
-    send_multicast(init_info, &msg_stop);
-//    for (int i = 0; i < init_info->processes_count - 1; ++i)
-//    {
-//        printf("received %d from %d\n", history_messages[i].s_header.s_type, i + 1);
-//    }
 
     receive_from_every_child(init_info, msgs, DONE);
-    send_multicast(init_info, &msg_stop);
 //    printf("received\n");
 
 
@@ -153,7 +95,6 @@ void main_process_get_message(InitInfo* init_info)
     write_info_to_events_file(log_received_all_done_fmt, init_info, DONE);
     printf(log_received_all_done_fmt, get_lamport_time(), init_info->process_id);
     fflush(stdout);
-    print_transactions_history(init_info, history_messages);
     close_its_pipes(init_info);
 //    printf("Leave main_process_get_message\n");
 }

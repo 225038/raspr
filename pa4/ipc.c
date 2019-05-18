@@ -11,7 +11,7 @@
 int send(void * self, local_id dst, const Message * msg)
 {
     InitInfo *init_info = (InitInfo*)self;
-//    printf("%d To %d\n", init_info->process_id, dst);
+//    printf("process id = %d, message type = %d\n", init_info->process_id, msg->s_header.s_type);
 
     int fd = init_info->descriptors[init_info->process_id][dst]->write_fd;
     int return_status = (int) write(fd, msg, sizeof msg->s_header + msg->s_header.s_payload_len);
