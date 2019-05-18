@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/liza/workspace/study/raspr/pa4/cmake-build-debug"/>
+				<Option working_dir="/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/liza/workspace/study/raspr/pa4/cmake-build-debug"/>
+				<Option working_dir="/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="raspr">
-				<Option output="/home/liza/workspace/study/raspr/pa4/cmake-build-debug/raspr" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/liza/workspace/study/raspr/pa4/cmake-build-debug"/>
+				<Option output="/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/raspr" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -41,10 +41,10 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 raspr"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 raspr"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="raspr/fast">
@@ -61,78 +61,78 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 raspr/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 raspr/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/liza/workspace/study/raspr/pa4/cmake-build-debug"/>
+				<Option working_dir="/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/liza/workspace/study/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/bank_robbery.c">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/bank_robbery.c">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/banking.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/banking.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/common.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/common.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc.c">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc.c">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_childs_message_worker.c">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_childs_message_worker.c">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_childs_message_worker.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_childs_message_worker.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_logs.c">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_logs.c">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_logs.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_logs.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_message_genrator.c">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_message_genrator.c">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_message_genrator.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_message_genrator.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_pipes.c">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_pipes.c">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_pipes.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_pipes.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_structs.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_structs.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_worker.c">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_worker.c">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_worker.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_worker.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/pa234.c">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/pa234.c">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/pa2345.h">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/pa2345.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/CMakeLists.txt">
+		<Unit filename="/home/aleksandra/Документы/распределенки/4/raspr/pa4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

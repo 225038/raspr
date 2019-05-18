@@ -1,4 +1,11 @@
-/home/liza/Downloads/clion-2018.3.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/liza/workspace/study/raspr/pa4
+/home/aleksandra/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/aleksandra/Документы/распределенки/4/raspr/pa4
+-- The C compiler identification is GNU 7.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/liza/workspace/study/raspr/pa4/cmake-build-debug
+-- Build files have been written to: /home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug

@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/liza/workspace/study/raspr/pa4/bank_robbery.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/bank_robbery.c.o"
-  "/home/liza/workspace/study/raspr/pa4/ipc.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc.c.o"
-  "/home/liza/workspace/study/raspr/pa4/ipc_childs_message_worker.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_childs_message_worker.c.o"
-  "/home/liza/workspace/study/raspr/pa4/ipc_logs.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_logs.c.o"
-  "/home/liza/workspace/study/raspr/pa4/ipc_message_genrator.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_message_genrator.c.o"
-  "/home/liza/workspace/study/raspr/pa4/ipc_pipes.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_pipes.c.o"
-  "/home/liza/workspace/study/raspr/pa4/ipc_worker.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_worker.c.o"
-  "/home/liza/workspace/study/raspr/pa4/pa234.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/pa234.c.o"
+  "/home/aleksandra/Документы/распределенки/4/raspr/pa4/bank_robbery.c" "/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/bank_robbery.c.o"
+  "/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc.c" "/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc.c.o"
+  "/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_childs_message_worker.c" "/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_childs_message_worker.c.o"
+  "/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_logs.c" "/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_logs.c.o"
+  "/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_message_genrator.c" "/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_message_genrator.c.o"
+  "/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_pipes.c" "/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_pipes.c.o"
+  "/home/aleksandra/Документы/распределенки/4/raspr/pa4/ipc_worker.c" "/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_worker.c.o"
+  "/home/aleksandra/Документы/распределенки/4/raspr/pa4/pa234.c" "/home/aleksandra/Документы/распределенки/4/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/pa234.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
