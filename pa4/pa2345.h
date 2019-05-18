@@ -22,7 +22,7 @@ static const char * const log_started_fmt =
 static const char * const log_received_all_started_fmt =
         "%d: process %1d received all STARTED messages\n";
 
-static const char * const log_done_fmt =
+static const char * const   log_done_fmt =
         "%d: process %1d has DONE with balance $%2d\n";
 
 static const char * const log_transfer_out_fmt =

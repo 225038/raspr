@@ -40,10 +40,14 @@ void create_child_processes(InitInfo* init_info)
                 sprintf(strings, log_loop_operation_fmt, i, j, iters);
                 if (mutexl) {
 //                    printf("%d\n", init_info->process_id);
+//                    fflush(stdout);
+                    printf("REQUEST %d\n", init_info->process_id);
                     fflush(stdout);
                     request_cs(init_info);
 //                    print(strings);
                     printf("%s\n", strings);
+                    fflush(stdout);
+                    printf("REALISED %d\n", init_info->process_id);
                     fflush(stdout);
                     release_cs(init_info);
                 } else {
@@ -69,6 +73,9 @@ void create_child_processes(InitInfo* init_info)
                     send(init_info, (local_id)sender, &reply);
                 }
             }
+
+            printf(log_done_fmt, get_lamport_time(), init_info->process_id, init_info->bank_account);
+            fflush(stdout);
 
             // closing this process's pipes in other processes
             close_its_pipes(init_info);
