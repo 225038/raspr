@@ -51,7 +51,7 @@ int who_is_next(const InitInfo *init_info)
 
     for (int i = 1; i < init_info->processes_count; ++i)
     {
-        printf("i = %d, id = %d, queue[i] = %d\n", i, init_info->process_id, queue[i]);
+//        printf("i = %d, id = %d, queue[i] = %d\n", i, init_info->process_id, queue[i]);
         if (i != init_info->process_id && queue[i] >= 0)
         {
 //            printf("process %d with %d "
@@ -70,6 +70,7 @@ int who_is_next(const InitInfo *init_info)
             }
         }
     }
+
 //    printf("process %d goes to the cs\n", init_info->process_id);
 //    fflush(stdout);
     return 0;
@@ -103,25 +104,21 @@ int request_cs(const void * self)
         }
         int sender_process_id = receive_any(init_info, &msg);
 //        printf("proc %d recieve type %d\n", init_info->process_id, msg.s_header.s_type);
-//        fflush(stdout);
+        fflush(stdout);
 
         switch (msg.s_header.s_type)
         {
-            case CS_RELEASE:                                                ////кто-то вышел, убираем его из очереди
-                printf("id = %d with time %d\n", init_info->process_id, msg.s_header.s_local_time);
-                queue[sender_process_id] = -1;
-                break;
             case CS_REQUEST:                                                ////кто-то хочет в очередь, добавим его
                 time++;
 //                printf("req %d with %d\n", init_info->process_id, get_lamport_time());
-//                fflush(stdout);
+                fflush(stdout);
                 queue[sender_process_id] = msg.s_header.s_local_time;
                 Message msg_reply = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_REPLY);
                 send(init_info, (local_id)sender_process_id, &msg_reply);
                 break;
             case CS_REPLY:
                 replies++;
-                printf("replies %d for %d\n", replies, init_info->process_id);
+//                printf("replies %d for %d\n", replies, init_info->process_id);
                 fflush(stdout);
                 break;
 //                while (1) {
@@ -146,7 +143,7 @@ int release_cs(const void * self)
     InitInfo *initInfo = (InitInfo*)self;
     time++;
     Message msg = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_RELEASE);
-    printf("process %d with time %d\n", initInfo->process_id, msg.s_header.s_local_time);
+//    printf("process %d with time %d\n", initInfo->process_id, msg.s_header.s_local_time);
     queue[initInfo->process_id] = -1;
     send_multicast(initInfo, &msg);
     return 0;
