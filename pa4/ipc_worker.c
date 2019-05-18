@@ -36,10 +36,10 @@ void amount_transfer(int amount, timestamp_t t_time, BalanceHistory *balance_his
  * Create needed count of processes. Child processes do their job RETURN??
  * @param init_info
  */
-void create_child_processes(InitInfo* init_info, const balance_t* bank_accounts)
+void create_child_processes(InitInfo* init_info)
 {
 //    printf("Enter create_child_processes\n");
-    BalanceHistory balance_history;
+//    BalanceHistory balance_history;
     pid_t* output = (pid_t*)malloc(sizeof(pid_t) * init_info->processes_count);
     output[0] = getpid();                                           //add id of main process
     for (local_id i = 1; i < init_info->processes_count; ++i)
@@ -50,58 +50,34 @@ void create_child_processes(InitInfo* init_info, const balance_t* bank_accounts)
 //            printf("Enter create_child_processes\n");
             // code for child
             init_info->process_id = i;
-            init_info->bank_account = bank_accounts[i];
-            balance_history.s_id = init_info->process_id;
-            balance_history.s_history_len = 1;
+//            init_info->bank_account = bank_accounts[i];
+//            balance_history.s_id = init_info->process_id;
+//            balance_history.s_history_len = 1;
             //Начальное состояние счета
-            balance_history.s_history[0] = (BalanceState){init_info->bank_account, get_lamport_time(), 0};
+//            balance_history.s_history[0] = (BalanceState){init_info->bank_account, get_lamport_time(), 0};
             close_some_pipes(init_info);
-            send_start_message_to_parent(init_info);
+            send_start_message_to_all(init_info);
 
-            Message msg_received;
+//            Message msg_received;
             //Полезная работа
-            while (1)
-            {
-//                printf("start receive %d\n", init_info->process_id);
-                receive_any(init_info, &msg_received);
-//                printf("process %d receive msg with type %d\n", init_info->process_id, msg_received.s_header.s_type);
-                switch (msg_received.s_header.s_type)
-                {
-                    case TRANSFER:
-                    {
-//                        printf("in TRANSFER %d\n", init_info->process_id);
-                        TransferOrder* order = (TransferOrder*) msg_received.s_payload;
-//                        printf("src %d dst %d amount %d\n", order->s_src, order->s_dst, order->s_amount);
-                        if (order->s_src == i) {
-                            amount_transfer(-order->s_amount,
-                                            get_lamport_time(), &balance_history, init_info);
-//                            time++;
-                            msg_received.s_header.s_local_time = get_lamport_time();
-                            send(init_info, order->s_dst, &msg_received);
-                        } else if (order->s_dst == i) {
-                            amount_transfer(order->s_amount,
-                                            get_lamport_time(), &balance_history, init_info);
-                            Message ack;
-                            ack = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, ACK);
-                            send(init_info, 0, &ack);
-                        }
-//                        printf("Leave TRANSFER %d\n", init_info->process_id);
-                        break;
-                    }
-                    case STOP:
-                    {
-//                        printf("in STOP %d\n", init_info->process_id);
-                        //Без этого у процессов, не участвовавших в последней транзакции - 0 в истории
-                        amount_transfer(0, get_lamport_time(), &balance_history, init_info);
-                        send_history_message_to_parent(init_info, balance_history);
-                        receive_any(init_info, &msg_received);
-                        send_done_message_to_parent(init_info);
-                        receive_any(init_info, &msg_received);
-                        goto leave_child_process;
-                    }
+
+            int iters = i * 5;
+            for (int j = 1; j <= iters; j++) {
+                char strings[MAX_MESSAGE_LEN];
+                sprintf(strings, log_loop_operation_fmt, i, j, iters);
+                if (mutexl) {
+                    request_cs(&init_info);
+                    print(strings);
+                    printf("%s\n", strings);
+//                    release_cs(&sio);
+                } else {
+                    print(strings);
+//                    printf("%s\n", loopStr);
                 }
             }
-            leave_child_process:
+            Message msg;
+            send_done_message_to_all(init_info);
+            receive_any(init_info, &msg);
 
             // closing this process's pipes in other processes
             close_its_pipes(init_info);

@@ -7,8 +7,9 @@
 #include "ipc_childs_message_worker.h"
 
 extern timestamp_t time;
+extern int mutexl;
 
-void create_child_processes(InitInfo* init_info, const balance_t bank_accounts[]);
+void create_child_processes(InitInfo* init_info);
 void main_process_get_message(InitInfo* init_info);
 
 #endif //RASPR_IPC_WORKER_H

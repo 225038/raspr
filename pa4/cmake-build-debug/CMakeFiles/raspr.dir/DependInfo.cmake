@@ -11,8 +11,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/liza/workspace/study/raspr/pa4/ipc_message_genrator.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_message_genrator.c.o"
   "/home/liza/workspace/study/raspr/pa4/ipc_pipes.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_pipes.c.o"
   "/home/liza/workspace/study/raspr/pa4/ipc_worker.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/ipc_worker.c.o"
-  "/home/liza/workspace/study/raspr/pa4/pa23.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/pa23.c.o"
-  "/home/liza/workspace/study/raspr/pa4/pa4_cs.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/pa4_cs.c.o"
+  "/home/liza/workspace/study/raspr/pa4/pa234.c" "/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles/raspr.dir/pa234.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -6,6 +6,7 @@
 #include "ipc_worker.h"
 
 timestamp_t queue[MAX_PROCESS_ID];
+int mutexl = 0;
 //Parse argv and get param of -p key; +1 in return because general number of processes includes parent process.
 int get_processes_count(int argc, char* argv[])
 {
@@ -50,10 +51,9 @@ int compare(const void * a, const void * b)
 {
     return ( *(int*)a - *(int*)b );
 }
-
 int who_is_next(const InitInfo *init_info)
 {
-    int check = 0;
+//    int check = 0;
     qsort(queue, MAX_PROCESS_ID, sizeof(timestamp_t), compare);
     for (int i = 1; i < init_info->processes_count; ++i)
     {
@@ -112,15 +112,15 @@ int release_cs(const void * self)
 
 int main(int argc, char *argv[]) {
     int processes_count = get_processes_count(argc, argv);
-    int mutexl = 0;
+
     const struct option options = {"mutexl", 0, &mutexl, 1};
     getopt_long(argc, argv, "", &options, NULL);
-    balance_t bank_accounts[processes_count];
-    for (int i = 1; i < processes_count; ++i)
-    {
-        bank_accounts[i] = atoi(argv[i + 2]);
-//        printf("Баланс на счету %d: %d$\n", i, bank_accounts[i]);
-    }
+//    balance_t bank_accounts[processes_count];
+//    for (int i = 1; i < processes_count; ++i)
+//    {
+//        bank_accounts[i] = atoi(argv[i + 2]);
+////        printf("Баланс на счету %d: %d$\n", i, bank_accounts[i]);
+//    }
     open_log_files();
     InitInfo *initInfo = (InitInfo*)malloc(sizeof(InitInfo));
     initInfo->processes_count = processes_count;
@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
 
     prepare_decriptors_array(initInfo);
     open_pipes(initInfo);
-    create_child_processes(initInfo, bank_accounts);
+    create_child_processes(initInfo);
     main_process_get_message(initInfo);
 
 //    printf("done msgs received\n");

@@ -312,59 +312,32 @@ ipc_worker.c.s:
 	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/ipc_worker.c.s
 .PHONY : ipc_worker.c.s
 
-pa23.o: pa23.c.o
+pa234.o: pa234.c.o
 
-.PHONY : pa23.o
-
-# target to build an object file
-pa23.c.o:
-	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa23.c.o
-.PHONY : pa23.c.o
-
-pa23.i: pa23.c.i
-
-.PHONY : pa23.i
-
-# target to preprocess a source file
-pa23.c.i:
-	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa23.c.i
-.PHONY : pa23.c.i
-
-pa23.s: pa23.c.s
-
-.PHONY : pa23.s
-
-# target to generate assembly for a file
-pa23.c.s:
-	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa23.c.s
-.PHONY : pa23.c.s
-
-pa4_cs.o: pa4_cs.c.o
-
-.PHONY : pa4_cs.o
+.PHONY : pa234.o
 
 # target to build an object file
-pa4_cs.c.o:
-	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa4_cs.c.o
-.PHONY : pa4_cs.c.o
+pa234.c.o:
+	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa234.c.o
+.PHONY : pa234.c.o
 
-pa4_cs.i: pa4_cs.c.i
+pa234.i: pa234.c.i
 
-.PHONY : pa4_cs.i
+.PHONY : pa234.i
 
 # target to preprocess a source file
-pa4_cs.c.i:
-	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa4_cs.c.i
-.PHONY : pa4_cs.c.i
+pa234.c.i:
+	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa234.c.i
+.PHONY : pa234.c.i
 
-pa4_cs.s: pa4_cs.c.s
+pa234.s: pa234.c.s
 
-.PHONY : pa4_cs.s
+.PHONY : pa234.s
 
 # target to generate assembly for a file
-pa4_cs.c.s:
-	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa4_cs.c.s
-.PHONY : pa4_cs.c.s
+pa234.c.s:
+	$(MAKE) -f CMakeFiles/raspr.dir/build.make CMakeFiles/raspr.dir/pa234.c.s
+.PHONY : pa234.c.s
 
 # Help Target
 help:
@@ -396,12 +369,9 @@ help:
 	@echo "... ipc_worker.o"
 	@echo "... ipc_worker.i"
 	@echo "... ipc_worker.s"
-	@echo "... pa23.o"
-	@echo "... pa23.i"
-	@echo "... pa23.s"
-	@echo "... pa4_cs.o"
-	@echo "... pa4_cs.i"
-	@echo "... pa4_cs.s"
+	@echo "... pa234.o"
+	@echo "... pa234.i"
+	@echo "... pa234.s"
 .PHONY : help
 
 

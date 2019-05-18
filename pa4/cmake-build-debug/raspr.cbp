@@ -126,13 +126,10 @@
 		<Unit filename="/home/liza/workspace/study/raspr/pa4/ipc_worker.h">
 			<Option target="raspr"/>
 		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/pa23.c">
+		<Unit filename="/home/liza/workspace/study/raspr/pa4/pa234.c">
 			<Option target="raspr"/>
 		</Unit>
 		<Unit filename="/home/liza/workspace/study/raspr/pa4/pa2345.h">
-			<Option target="raspr"/>
-		</Unit>
-		<Unit filename="/home/liza/workspace/study/raspr/pa4/pa4_cs.c">
 			<Option target="raspr"/>
 		</Unit>
 		<Unit filename="/home/liza/workspace/study/raspr/pa4/CMakeLists.txt">

@@ -83,18 +83,18 @@ CMakeFiles/raspr.dir/ipc_worker.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/raspr.dir/ipc_worker.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/liza/workspace/study/raspr/pa4/ipc_worker.c -o CMakeFiles/raspr.dir/ipc_worker.c.s
 
-CMakeFiles/raspr.dir/pa23.c.o: CMakeFiles/raspr.dir/flags.make
-CMakeFiles/raspr.dir/pa23.c.o: ../pa23.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/raspr.dir/pa23.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/raspr.dir/pa23.c.o   -c /home/liza/workspace/study/raspr/pa4/pa23.c
+CMakeFiles/raspr.dir/pa234.c.o: CMakeFiles/raspr.dir/flags.make
+CMakeFiles/raspr.dir/pa234.c.o: ../pa234.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/raspr.dir/pa234.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/raspr.dir/pa234.c.o   -c /home/liza/workspace/study/raspr/pa4/pa234.c
 
-CMakeFiles/raspr.dir/pa23.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/raspr.dir/pa23.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/liza/workspace/study/raspr/pa4/pa23.c > CMakeFiles/raspr.dir/pa23.c.i
+CMakeFiles/raspr.dir/pa234.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/raspr.dir/pa234.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/liza/workspace/study/raspr/pa4/pa234.c > CMakeFiles/raspr.dir/pa234.c.i
 
-CMakeFiles/raspr.dir/pa23.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/raspr.dir/pa23.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/liza/workspace/study/raspr/pa4/pa23.c -o CMakeFiles/raspr.dir/pa23.c.s
+CMakeFiles/raspr.dir/pa234.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/raspr.dir/pa234.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/liza/workspace/study/raspr/pa4/pa234.c -o CMakeFiles/raspr.dir/pa234.c.s
 
 CMakeFiles/raspr.dir/bank_robbery.c.o: CMakeFiles/raspr.dir/flags.make
 CMakeFiles/raspr.dir/bank_robbery.c.o: ../bank_robbery.c
@@ -161,46 +161,31 @@ CMakeFiles/raspr.dir/ipc_childs_message_worker.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/raspr.dir/ipc_childs_message_worker.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/liza/workspace/study/raspr/pa4/ipc_childs_message_worker.c -o CMakeFiles/raspr.dir/ipc_childs_message_worker.c.s
 
-CMakeFiles/raspr.dir/pa4_cs.c.o: CMakeFiles/raspr.dir/flags.make
-CMakeFiles/raspr.dir/pa4_cs.c.o: ../pa4_cs.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/raspr.dir/pa4_cs.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/raspr.dir/pa4_cs.c.o   -c /home/liza/workspace/study/raspr/pa4/pa4_cs.c
-
-CMakeFiles/raspr.dir/pa4_cs.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/raspr.dir/pa4_cs.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/liza/workspace/study/raspr/pa4/pa4_cs.c > CMakeFiles/raspr.dir/pa4_cs.c.i
-
-CMakeFiles/raspr.dir/pa4_cs.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/raspr.dir/pa4_cs.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/liza/workspace/study/raspr/pa4/pa4_cs.c -o CMakeFiles/raspr.dir/pa4_cs.c.s
-
 # Object files for target raspr
 raspr_OBJECTS = \
 "CMakeFiles/raspr.dir/ipc.c.o" \
 "CMakeFiles/raspr.dir/ipc_worker.c.o" \
-"CMakeFiles/raspr.dir/pa23.c.o" \
+"CMakeFiles/raspr.dir/pa234.c.o" \
 "CMakeFiles/raspr.dir/bank_robbery.c.o" \
 "CMakeFiles/raspr.dir/ipc_pipes.c.o" \
 "CMakeFiles/raspr.dir/ipc_logs.c.o" \
 "CMakeFiles/raspr.dir/ipc_message_genrator.c.o" \
-"CMakeFiles/raspr.dir/ipc_childs_message_worker.c.o" \
-"CMakeFiles/raspr.dir/pa4_cs.c.o"
+"CMakeFiles/raspr.dir/ipc_childs_message_worker.c.o"
 
 # External object files for target raspr
 raspr_EXTERNAL_OBJECTS =
 
 raspr: CMakeFiles/raspr.dir/ipc.c.o
 raspr: CMakeFiles/raspr.dir/ipc_worker.c.o
-raspr: CMakeFiles/raspr.dir/pa23.c.o
+raspr: CMakeFiles/raspr.dir/pa234.c.o
 raspr: CMakeFiles/raspr.dir/bank_robbery.c.o
 raspr: CMakeFiles/raspr.dir/ipc_pipes.c.o
 raspr: CMakeFiles/raspr.dir/ipc_logs.c.o
 raspr: CMakeFiles/raspr.dir/ipc_message_genrator.c.o
 raspr: CMakeFiles/raspr.dir/ipc_childs_message_worker.c.o
-raspr: CMakeFiles/raspr.dir/pa4_cs.c.o
 raspr: CMakeFiles/raspr.dir/build.make
 raspr: CMakeFiles/raspr.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable raspr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/liza/workspace/study/raspr/pa4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable raspr"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/raspr.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
