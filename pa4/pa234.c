@@ -1,6 +1,7 @@
 #include <getopt.h>         ////for getopt
 #include <stdlib.h>         ////for atoi
 #include <stdio.h>          ////for printf
+//#include <jmorecfg.h>
 
 #include "ipc_worker.h"
 
@@ -46,35 +47,23 @@ void transfer(void * parent_data, local_id src, local_id dst, balance_t amount)
 //    printf("Leave transfer\n");
 }
 
-int compare(const void * a, const void * b)
-{
-    return ( *(int*)a - *(int*)b );
-}
 int who_is_next(const InitInfo *init_info)
 {
-    printf("Who is next for %d\n", init_info->process_id);
-    fflush(stdout);
-//    int check = 0;
-    qsort(queue, MAX_PROCESS_ID, sizeof(timestamp_t), compare);
-    for (int i = 1; i < init_info->processes_count; ++i)
+    for (int i = 1; i <= init_info->processes_count; ++i)
     {
         if (i != init_info->process_id)
         {
-            if (queue[init_info->process_id] > queue[i]){
-                printf("if) process %d goes to the cs\n", i);
-                fflush(stdout);
+//            printf("time1 = %d, time2 = %d\n", queue[i], queue[init_info->process_id]);
+            if (queue[init_info->process_id] > queue[i]) {
+                printf("process %d goes to the cs WHY NOT\n", init_info->process_id);
                 return i;
             }
-            if (queue[i] == queue[init_info->process_id] && i<init_info->process_id)
-            {
-                printf("if2) process %d goes to the cs\n", i);
-                fflush(stdout);
+            if (queue[i] == queue[init_info->process_id] && i < init_info->process_id) {
+                printf("process %d goes to the cs\n", init_info->process_id);
                 return i;
             }
         }
     }
-    printf("process %d goes to the cs\n", init_info->process_id);
-    fflush(stdout);
     return 0;
 }
 
@@ -84,8 +73,8 @@ int request_cs(const void * self)
     time++;
     Message msg = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_REQUEST);
     queue[init_info->process_id] = msg.s_header.s_local_time;
-//    printf("%d\n", init_info->process_id);
-//    fflush(stdout);
+    printf("request sent from %d with time %d\n", init_info->process_id, msg.s_header.s_local_time);
+    fflush(stdout);
     send_multicast(init_info, &msg);            ////отправили всем, что хотим в КС
 
     if (who_is_next(init_info) == 0)
@@ -96,40 +85,34 @@ int request_cs(const void * self)
     while(1)
     {
         Message msg;
-//        printf("I AM HERE %d\n", init_info->process_id);
-//        fflush(stdout);
         int sender_process_id = receive_any(init_info, &msg);
-        printf("proc %d type %d\n", init_info->process_id, msg.s_header.s_type);
-        fflush(stdout);
         switch (msg.s_header.s_type)
         {
             case CS_RELEASE:                                                ////кто-то вышел, убираем его из очереди
                 queue[sender_process_id] = -1;
+                if (who_is_next(init_info) == 0) return 0;
                 break;
-            case CS_REQUEST:                                                ////кто-то хочет в очередь, добавим его
-                time++;
-                printf("req %d\n", init_info->process_id);
-                fflush(stdout);
+            case CS_REQUEST:   //// кто-то хочет в очередь, добавим его
                 queue[sender_process_id] = msg.s_header.s_local_time;
+                time++;
                 Message msg_reply = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_REPLY);
                 send(init_info, (local_id)sender_process_id, &msg_reply);
+                printf("I am here\n");
                 break;
             case CS_REPLY:
                 replies++;
-                printf("replies %d for %d\n", replies, init_info->process_id);
-                fflush(stdout);
-                if (replies == init_info->processes_count - 2 && who_is_next(init_info) == 0) {        ////если все ответили и мы след.
-                    //// можем уходить
+                //// можем уходить
+                printf("problem is here\n");
+                if (replies == init_info->processes_count - 2 && who_is_next(init_info) == 0)     {
                     return 0;
                 }
-            default:
-                break;
         }
     }
 }
 int release_cs(const void * self)
 {
     InitInfo *initInfo = (InitInfo*)self;
+    time++;
     Message msg = generate_empty_message(get_lamport_time(), MESSAGE_MAGIC, CS_RELEASE);
     queue[initInfo->process_id] = -1;
     send_multicast(initInfo, &msg);
@@ -141,6 +124,7 @@ int main(int argc, char *argv[]) {
 
     const struct option options = {"mutexl", 0, &mutexl, 1};
     getopt_long(argc, argv, "", &options, NULL);
+
     open_log_files();
     InitInfo *initInfo = (InitInfo*)malloc(sizeof(InitInfo));
     initInfo->processes_count = processes_count;
